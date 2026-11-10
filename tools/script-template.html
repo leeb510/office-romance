@@ -1,0 +1,288 @@
+<title>오후 6시, 9층 대본</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<style>
+/* 대본 바인더: 아이보리 대본 종이 한 장, 왼쪽엔 회차 목차. 게임과 같은 먹색·말린 장미 톤 (종이 한 가지 테마로 고정) */
+:root {
+  color-scheme: light;
+  --paper: #fbf8f3;
+  --sheet: #fffefb;
+  --ink: #2f2a2e;
+  --soft: #7b7177;
+  --rule: #e7e0d8;
+  --rose: #94475a;
+  --rose-bg: #f6e7ea;
+  --good: #3f7a55;
+  --good-bg: #e6f1e8;
+  --warn: #9a6514;
+  --warn-bg: #f7ecd8;
+  --font-display: 'Nanum Myeongjo', 'Noto Serif KR', 'AppleMyungjo', 'Batang', serif;
+  --font-body: 'Gowun Dodum', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-ui: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.75; margin: 0; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 80px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+@media (max-width: 820px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+
+/* 머리말 */
+.head { grid-column: 1 / -1; padding-bottom: 18px; border-bottom: 1.5px solid var(--ink); margin-bottom: 8px; }
+.kicker { font-family: var(--font-ui); font-size: 12px; letter-spacing: .14em; color: var(--soft); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 6vw, 44px); line-height: 1.15; margin: 6px 0 10px; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--rose); }
+.stats { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--font-ui); font-size: 13px; color: var(--soft); font-variant-numeric: tabular-nums; }
+.stats b { color: var(--ink); font-weight: 600; }
+.legend { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--font-ui); font-size: 12px; color: var(--soft); align-items: center; }
+
+/* 목차 */
+.toc { position: sticky; top: calc(16px + env(safe-area-inset-top, 0px)); align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; padding-top: 14px; font-family: var(--font-ui); font-size: 13px; }
+.toc h2 { font-family: var(--font-display); font-size: 14px; margin: 14px 0 4px; display: flex; align-items: center; gap: 6px; }
+.toc h2 i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--ink)); }
+.toc a { display: block; color: var(--soft); text-decoration: none; padding: 2px 0 2px 14px; line-height: 1.45; }
+.toc a:hover { color: var(--ink); }
+.toc a.sub { padding-left: 26px; font-size: 12px; }
+@media (max-width: 820px) {
+  .toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; max-height: none; overflow-x: auto; overflow-y: hidden; background: var(--paper); padding: 10px 0; display: flex; gap: 6px; white-space: nowrap; border-bottom: 1px solid var(--rule); }
+  .toc h2 { display: none; }
+  .toc a { display: none; }
+  .toc a.jump { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); background: var(--sheet); font-size: 12px; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+}
+.toc a.jump i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--ink)); flex: none; }
+@media (min-width: 821px) { .toc a.jump { display: none; } }
+
+/* 도구 줄 */
+.tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px 0 6px; font-family: var(--font-ui); font-size: 13px; }
+.tools input[type=search] { flex: 1 1 220px; min-width: 0; padding: 8px 12px; border: 1px solid var(--ink); border-radius: 10px; background: var(--sheet); }
+.toggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
+.toggle input { accent-color: var(--rose); width: 16px; height: 16px; }
+.found { color: var(--soft); font-variant-numeric: tabular-nums; }
+
+/* 장면 */
+main { min-width: 0; }
+.group-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; margin: 34px 0 6px; display: flex; align-items: center; gap: 10px; scroll-margin-top: 70px; }
+.group-title i { width: 12px; height: 12px; border-radius: 50%; background: var(--c, var(--ink)); }
+.group-title small { font-family: var(--font-ui); font-weight: 400; font-size: 13px; color: var(--soft); }
+.scene { background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 22px 20px; margin: 12px 0; scroll-margin-top: 70px; }
+@media (max-width: 520px) { .scene { padding: 14px 14px 16px; } }
+.scene-head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; border-bottom: 1px dashed var(--rule); padding-bottom: 8px; margin-bottom: 10px; }
+.scene-head h3 { font-family: var(--font-display); font-weight: 800; font-size: 17px; margin: 0; text-wrap: balance; }
+.scene-head code { font-family: var(--font-ui); font-size: 11px; color: var(--soft); white-space: nowrap; }
+.scene.hit { box-shadow: 0 0 0 2px var(--rose-bg); }
+
+/* 대본 줄 */
+.b > * + * { margin-top: 8px; }
+.dir { font-family: var(--font-ui); font-size: 12px; color: var(--soft); letter-spacing: .02em; }
+.dir::before { content: "— "; }
+.chapter { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--rose); }
+.narr { color: #5a5156; padding-left: 2px; }
+.line { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
+@media (max-width: 520px) { .line { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+.who { font-family: var(--font-display); font-weight: 800; font-size: 14px; color: var(--c, var(--ink)); padding-top: 2px; line-height: 1.4; }
+.who small { display: block; font-family: var(--font-ui); font-weight: 400; font-size: 11px; color: var(--soft); }
+@media (max-width: 520px) { .who small { display: inline; margin-left: 6px; } }
+.say { min-width: 0; border-left: 2px solid var(--c, var(--ink)); padding-left: 12px; }
+.line.me .who { color: var(--rose); }
+.line.me .say { border-left-style: dashed; border-color: var(--rose); }
+.line.npc .who { color: var(--soft); }
+.line.npc .say { border-color: var(--rule); }
+.msg { display: inline-block; max-width: 100%; background: #eeebf5; border-radius: 4px 14px 14px 14px; padding: 6px 12px; }
+.sfx { display: inline-block; font-family: var(--font-display); font-weight: 800; color: var(--rose); font-size: 15px; letter-spacing: .04em; }
+.sfx::before { content: "효과음 "; font-family: var(--font-ui); font-weight: 500; font-size: 11px; color: var(--soft); letter-spacing: 0; }
+.nm { font-family: var(--font-ui); font-size: .82em; background: var(--rose-bg); color: var(--rose); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+mark { background: #fbe39a; color: inherit; border-radius: 2px; }
+
+/* 효과 칩 */
+.chips { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; }
+.chip { font-family: var(--font-ui); font-size: 11px; font-weight: 500; line-height: 1; padding: 4px 7px; border-radius: 999px; background: var(--good-bg); color: var(--good); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chip.down { background: var(--rose-bg); color: var(--rose); }
+.chip.bad, .chip.work { background: var(--warn-bg); color: var(--warn); }
+.chip.work.up { background: #e6edf7; color: #35577f; }
+.chip.flag { background: #efecf0; color: var(--soft); }
+
+/* 선택지 */
+.choice { border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.choice-cap { font-family: var(--font-ui); font-size: 11px; letter-spacing: .14em; background: var(--ink); color: var(--sheet); padding: 4px 12px; }
+.opt { padding: 10px 14px 12px; border-top: 1px solid var(--rule); }
+.opt:first-of-type { border-top: 0; }
+.opt-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+.opt-n { font-family: var(--font-ui); font-size: 12px; font-weight: 600; color: var(--soft); font-variant-numeric: tabular-nums; }
+.opt-t { font-weight: 700; flex: 1 1 260px; min-width: 0; }
+.opt.is-bad { background: #fdf6f7; }
+.opt.is-bad .opt-n { color: var(--rose); }
+.badtag { font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; color: #fff; background: var(--rose); border-radius: 4px; padding: 2px 6px; }
+.opt-body { margin-top: 8px; padding-left: 14px; border-left: 2px solid var(--rule); }
+.hide-results .opt-body { display: none; }
+
+/* 조건 */
+.cond { border: 1px dashed #b9aeb4; border-radius: 8px; padding: 8px 12px; }
+.cond-cap { font-family: var(--font-ui); font-size: 12px; color: var(--soft); }
+.cond-cap b { color: var(--ink); font-weight: 600; }
+.cond .b { margin-top: 6px; }
+.cond-else { margin-top: 8px; padding-top: 6px; border-top: 1px dashed var(--rule); }
+
+/* 이동 · 엔딩 */
+.go { font-family: var(--font-ui); font-size: 12.5px; color: var(--soft); }
+.go a { color: var(--ink); text-decoration-color: #c9bfc5; text-underline-offset: 3px; }
+.go a:hover { color: var(--rose); }
+.go .rule { display: block; }
+.end { border-radius: 8px; background: var(--c, #ede7ea); padding: 10px 14px; }
+.end small { font-family: var(--font-ui); font-size: 11px; letter-spacing: .14em; color: var(--soft); }
+.end b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 18px; }
+.end span { font-size: 14px; color: #5a5156; }
+.cgfig { margin: 10px 0; max-width: 260px; }
+.cgfig img { display: block; width: 100%; border-radius: 6px; border: 1px solid var(--ink); }
+.cgfig figcaption { font-family: var(--font-ui); font-size: 12px; color: var(--soft); margin-top: 4px; }
+.empty { padding: 30px 0; color: var(--soft); font-family: var(--font-ui); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <div class="kicker">대본 · (주)루멘 9층 오피스 로맨스</div>
+    <h1>오후 6시, <em>9층</em> 대본</h1>
+    <div class="stats" id="stats"></div>
+    <div class="legend">
+      <span class="chips"><span class="chip">호감 +</span><span class="chip down">호감 −</span><span class="chip work up">업무력</span><span class="chip bad">사고</span><span class="chip flag">기억됨</span></span>
+      <span><span class="badtag">나쁜 선택</span> 호감도·업무력이 떨어지거나 사고가 나는 선택지</span>
+      <span><span class="nm">이름</span> 플레이어가 정한 주인공 이름</span>
+    </div>
+  </header>
+
+  <nav class="toc" id="toc" aria-label="목차"></nav>
+
+  <main>
+    <div class="tools">
+      <input type="search" id="q" placeholder="대사 검색 (예: 꽥이, 봄이, 고양이)" aria-label="대사 검색">
+      <label class="toggle"><input type="checkbox" id="showRes" checked> 선택 결과 펼치기</label>
+      <label class="toggle"><input type="checkbox" id="badOnly"> 나쁜 선택 있는 장면만</label>
+      <span class="found" id="found"></span>
+    </div>
+    <div id="out"></div>
+  </main>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  'use strict';
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const C = D.cast;
+  const CG = D.cg || {};
+  const byId = Object.fromEntries(D.scenes.map(s => [s.id, s]));
+  const GROUPS = [
+    { id: 'common', name: '공통 1~6화', sub: '프롤로그부터 루트 결정까지' },
+    ...Object.keys(C).map(k => ({ id: k, name: C[k].name + ' 루트', sub: C[k].age + ' · ' + C[k].role, c: C[k].color })),
+    { id: 'other', name: '그 밖의 엔딩', sub: '커리어 · 엇갈림 · 수습 연장 · 솔로' },
+  ];
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  let query = '';
+  function txt(s) {
+    let h = esc(s)
+      .replace(/\{name\|([^|}]*)\|([^}]*)\}/g, '<span class="nm">이름</span>$1/$2')
+      .replace(/\{name\}/g, '<span class="nm">이름</span>');
+    if (query) {
+      const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      h = h.replace(/(^|>)([^<]+)(?=<|$)/g, (m, a, b) => a + b.replace(re, '<mark>$1</mark>'));
+    }
+    return h;
+  }
+  const link = id => byId[id] ? `<a href="#${id}">${esc(byId[id].label)}</a>` : esc(id);
+  function chips(eff) {
+    if (!eff || !eff.length) return '';
+    return '<span class="chips">' + eff.map(e => {
+      let cls = 'chip';
+      if (e.k === 'aff' || e.k === 'rs') cls += e.n < 0 ? ' down' : '';
+      if (e.k === 'work') cls += ' work' + (e.n > 0 ? ' up' : '');
+      if (e.k === 'bad') cls += ' bad';
+      if (e.k === 'flag') cls += ' flag';
+      return `<span class="${cls}">${esc(e.label)}</span>`;
+    }).join('') + '</span>';
+  }
+  function goHtml(g, prefix) {
+    if (!g) return '';
+    if (g.targets) return `<div class="go"><span class="rule">${esc(g.rule)}</span>→ ${g.targets.map(link).join(' · ')}</div>`;
+    if (g.alt) return `<div class="go">→ ${esc(g.rule)} ${link(g.to)}, 아니면 ${link(g.alt)}</div>`;
+    if (g.to) return `<div class="go">${prefix || '→ 다음'}: ${link(g.to)}</div>`;
+    return `<div class="go">→ ${esc(g.rule)}</div>`;
+  }
+  function body(list) {
+    return list.map(x => {
+      switch (x.type) {
+        case 'title': return '';   // 장면 제목 줄에 이미 나옴
+        case 'dir': return `<div class="dir">${esc(x.text)}</div>`;
+        case 'sfx': return `<div><span class="sfx">${esc(x.text)}</span></div>`;
+        case 'cg': return `<figure class="cgfig"><img src="${CG[x.id] || ''}" alt="" loading="lazy"><figcaption>일러스트 · ${esc(x.title)}</figcaption></figure>`;
+        case 'fx': return `<div>${chips(x.eff)}</div>`;
+        case 'narr': return `<p class="narr" style="margin-block:0">${txt(x.t)}</p>`;
+        case 'me': return `<div class="line me"><div class="who">나</div><div class="say">${txt(x.t)}</div></div>`;
+        case 'line': {
+          const c = C[x.who];
+          if (!c) return `<div class="line npc"><div class="who">${esc(x.who)}</div><div class="say">${txt(x.t)}</div></div>`;
+          return `<div class="line" style="--c:${c.color}"><div class="who">${esc(c.short)}${x.e ? `<small>${esc(x.e)}</small>` : ''}</div><div class="say">${txt(x.t)}</div></div>`;
+        }
+        case 'msg': {
+          const c = C[x.who] || {};
+          return `<div class="line" style="--c:${c.color}"><div class="who">${esc(c.short || x.who)}<small>메시지</small></div><div class="say" style="border:0;padding:0"><span class="msg">${txt(x.t)}</span></div></div>`;
+        }
+        case 'if': return `<div class="cond"><div class="cond-cap">조건 · <b>${esc(x.cond)}</b></div><div class="b">${body(x.then)}</div>${x.else && x.else.length ? `<div class="cond-else"><div class="cond-cap">아니면</div><div class="b">${body(x.else)}</div></div>` : ''}</div>`;
+        case 'choice': return `<div class="choice"><div class="choice-cap">선택지</div>${x.options.map((o, i) => `
+          <div class="opt${o.bad ? ' is-bad' : ''}">
+            <div class="opt-head"><span class="opt-n">${i + 1}</span><span class="opt-t">${txt(o.t)}</span>${o.bad ? '<span class="badtag">나쁜 선택</span>' : ''}${chips(o.eff)}</div>
+            ${o.then.length || o.go ? `<div class="opt-body b">${body(o.then)}${goHtml(o.go, '→ 이어서')}</div>` : ''}
+          </div>`).join('')}</div>`;
+        case 'go': return goHtml(x);
+        case 'ending': {
+          const c = x.who ? C[x.who].tint : '#ede7ea';
+          const n = D.endings.findIndex(e => e.id === x.id) + 1;
+          return `<div class="end" style="--c:${c}"><small>ENDING ${String(n).padStart(2, '0')}</small><b>${esc(x.title)}</b><span>${esc(x.desc)}</span></div>`;
+        }
+      }
+      return '';
+    }).join('');
+  }
+  function hasBad(list) {
+    return list.some(x => (x.type === 'choice' && x.options.some(o => o.bad || hasBad(o.then))) || (x.type === 'if' && (hasBad(x.then) || hasBad(x.else))));
+  }
+  function plain(list) {
+    return list.map(x => [x.t, x.text, x.title, x.sub, x.cond, x.desc, x.options && x.options.map(o => o.t + ' ' + plain(o.then)).join(' '), x.then && plain(x.then), x.else && plain(x.else)].filter(Boolean).join(' ')).join(' ');
+  }
+  D.scenes.forEach(s => { s.plain = plain(s.body).toLowerCase(); s.bad = hasBad(s.body); });
+
+  // 목차
+  document.getElementById('toc').innerHTML = GROUPS.map(g => {
+    const list = D.scenes.filter(s => s.group === g.id);
+    return `<a class="jump" href="#g-${g.id}" style="--c:${g.c || 'var(--ink)'}"><i></i>${esc(g.name)}</a>
+      <h2 style="--c:${g.c || 'var(--ink)'}"><i></i>${esc(g.name)}</h2>` +
+      list.map(s => `<a href="#${s.id}" class="${/갈래|9화 ·|^엔딩/.test(s.label) ? 'sub' : ''}">${esc(s.label)}</a>`).join('');
+  }).join('');
+
+  document.getElementById('stats').innerHTML =
+    `<span>장면 <b>${D.stats.scenes}</b></span><span>대사·지문 <b>${D.stats.lines}</b>줄</span><span>선택지 <b>${D.stats.choices}</b>곳</span><span>나쁜 선택 <b>${D.stats.badOpts}</b>개</span><span>엔딩 <b>${D.stats.endings}</b>개</span>`;
+
+  const out = document.getElementById('out');
+  function render() {
+    const badOnly = document.getElementById('badOnly').checked;
+    const q = query.toLowerCase();
+    let shown = 0;
+    out.innerHTML = GROUPS.map(g => {
+      const list = D.scenes.filter(s => s.group === g.id && (!q || s.plain.includes(q)) && (!badOnly || s.bad));
+      shown += list.length;
+      if (!list.length) return '';
+      return `<h2 class="group-title" id="g-${g.id}" style="--c:${g.c || 'var(--ink)'}"><i></i>${esc(g.name)} <small>${esc(g.sub)}</small></h2>` +
+        list.map(s => `<section class="scene${q ? ' hit' : ''}" id="${s.id}"><div class="scene-head"><h3>${esc(s.label)}</h3><code>${s.id}</code></div><div class="b">${body(s.body)}</div></section>`).join('');
+    }).join('') || '<div class="empty">찾는 대사가 없어요. 다른 낱말로 검색해 보세요.</div>';
+    document.getElementById('found').textContent = (q || badOnly) ? `장면 ${shown}개` : '';
+  }
+  let t = 0;
+  document.getElementById('q').addEventListener('input', e => { clearTimeout(t); t = setTimeout(() => { query = e.target.value.trim(); render(); }, 150); });
+  document.getElementById('badOnly').addEventListener('change', render);
+  const res = document.getElementById('showRes');
+  res.addEventListener('change', () => out.classList.toggle('hide-results', !res.checked));
+  render();
+  if (location.hash && document.getElementById(location.hash.slice(1))) document.getElementById(location.hash.slice(1)).scrollIntoView();
+})();
+</script>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>오후 6시, 9층</title>
+  <meta name="description" content="선택에 따라 이야기와 엔딩이 바뀌는 사내 로맨스 어드벤처">
+  <meta name="theme-color" content="#f6f1ec">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="오후 6시, 9층">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--BODY-->
+<div id="app">
+  <main class="stage" id="stage">
+    <div class="layer bg-layer" id="bgA"></div>
+    <div class="layer bg-layer hidden" id="bgB"></div>
+    <div class="haze"></div>
+    <div id="sprite" class="out"></div>
+    <div id="closeup" class="closeup" hidden></div>
+    <div id="cg" class="cg" hidden><div class="cg-frame"></div></div>
+    <canvas id="fx" class="layer"></canvas>
+
+    <header class="topbar" id="topbar">
+      <div class="chapter-label" id="chapterLabel"></div>
+      <button class="tb-btn" id="btnLog" aria-label="대화 기록">기록</button>
+      <button class="tb-btn" id="btnAuto" aria-pressed="false">자동</button>
+      <button class="tb-btn" id="btnSkip" aria-pressed="false">빨리</button>
+      <button class="tb-btn" id="btnMenu" aria-label="메뉴">메뉴</button>
+    </header>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+    <div class="choices" id="choices" hidden></div>
+
+    <section class="dialog" id="dialog" aria-live="polite">
+      <div class="portrait" id="portrait" hidden></div>
+      <div class="nametag" id="nametag" hidden></div>
+      <div class="dialog-text" id="dialogText"></div>
+      <div class="next-mark" id="nextMark" aria-hidden="true">▼</div>
+    </section>
+
+    <section class="overlay title-screen" id="titleScreen">
+      <div class="title-art"><img id="titleArt" src="img/title.webp" alt="오후 6시, 9층 — 벚꽃 가지 아래 책상 위의 화분 봄이, 고무 오리 꽥이, 고양이 스케치, 커피 두 잔" draggable="false"></div>
+      <div class="title-inner">
+        <div class="title-head">
+          <h1 class="sr-only">오후 6시, 9층</h1>
+          <div class="title-kicker">오피스 로맨스 · (주)루멘 9층</div>
+          <p class="title-tag">경쟁 PT까지 3주, 그리고 퇴근 후의 선택들.<br>누구의 마음에 불이 켜질까.</p>
+        </div>
+        <nav class="title-menu">
+          <button class="btn primary" id="btnNew">새로 시작 <small>사원증 발급</small></button>
+          <button class="btn" id="btnContinue" disabled>이어하기 <small>자동 저장</small></button>
+          <button class="btn" id="btnAlbum">엔딩 앨범 <small id="albumCount">0 / 14</small></button>
+          <button class="btn" id="btnAbout">게임 정보</button>
+        </nav>
+        <div class="title-foot">© 2026 Leeb</div>
+      </div>
+    </section>
+  </main>
+</div>
+<!--/BODY-->
+<script src="js/art.js"></script>
+<script src="js/story.js"></script>
+<script src="js/engine.js"></script>
+<script>
+  // 오프라인 실행용 (GitHub Pages 같은 https 주소에서만 동작)
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  }
+</script>
+</body>
+</html>
